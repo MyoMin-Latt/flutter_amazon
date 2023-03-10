@@ -6,7 +6,7 @@ authRouter.post('/api/signup', (req, res) => {
     const { name, email, password } = req.body;
     // console.log(req.body);
     // get the data from client
-    // post that data in database
+    // post that data in database // weak password 6 char, same account with email
     // return that dtat to the user
 })
 

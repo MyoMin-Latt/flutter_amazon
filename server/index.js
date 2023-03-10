@@ -1,5 +1,6 @@
 // Imports from packages
 const express = require('express');
+const mongoose = require('mongoose');
 
 // Imports from other files
 const authRouter = require("./routes/auth")
@@ -7,11 +8,18 @@ const authRouter = require("./routes/auth")
 // Init
 const app = express();
 const PORT = 3000;
+const DB = "mongodb+srv://myominlatt330:8nwu8vgDBiEdwr9R@cluster0.hwbhxtj.mongodb.net/?retryWrites=true&w=majority" // if password contain '@', can face this error MongoAPIError: URI must include hostname, domain name, and tld
 
 // middleware
 // Client -> middleware ->  Server -> Client
 app.use(authRouter);
 
+// connections
+mongoose.connect(DB).then(() => {
+    console.log("Conection Successful");
+}).catch((e) => {
+    console.log(e);
+})
 
 
 
