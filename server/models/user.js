@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
         trim: true,
         validate: {
             validator: (value) => {
-                const re = /^(\S)(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹])[a-zA-Z0-9~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]{10,16}$/;
+                const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
                 return value.match(re);
             },
             message: "Please enter a valid email address",
@@ -21,6 +21,12 @@ const userSchema = mongoose.Schema({
     password: {
         required: true,
         type: String,
+        validate: {
+            validator: (value) => {
+                return value.length > 6;
+            },
+            message: "Please enter a long password",
+        },
     },
     address: {
         type: String,

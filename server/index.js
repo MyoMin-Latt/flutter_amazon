@@ -12,7 +12,9 @@ const DB = "mongodb+srv://myominlatt330:8nwu8vgDBiEdwr9R@cluster0.hwbhxtj.mongod
 
 // middleware
 // Client -> middleware ->  Server -> Client
-app.use(authRouter);
+app.use(express.json());
+app.use(authRouter); // Q, how about user
+// app.use('/api/v1/auth', authRouter); // Q, how about user
 
 // connections
 mongoose.connect(DB).then(() => {
@@ -49,7 +51,7 @@ mongoose.connect(DB).then(() => {
 // })
 // Get, put, post, delete, update -> CRUD
 
-app.listen(PORT, () =>
+app.listen(PORT, "0.0.0.0", () =>
     console.log(`Connected at port ${PORT}`)
 );
 
