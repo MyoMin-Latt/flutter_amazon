@@ -11,6 +11,11 @@ const authRouter = require("./routes/auth")
 const PORT = 3000;
 const app = express();
 
+// solution1
+app.get('/', (req, res) => {
+    res.json({ name: "U Aye" })
+})
+
 // Creating an api
 app.get('/hello-world', (req, res) => {
     // res.send("Hello World"); // text
