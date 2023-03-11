@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_amazon/features/auth/services/auth_service.dart';
 
 import '../../../common/widgets/custom_button.dart';
 import '../../../common/widgets/custom_textfield.dart';
@@ -24,6 +25,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  final AuthService authService = AuthService();
 
   @override
   void dispose() {
@@ -33,14 +35,14 @@ class _AuthScreenState extends State<AuthScreen> {
     _nameController.dispose();
   }
 
-  // void signUpUser() {
-  //   authService.signUpUser(
-  //     context: context,
-  //     email: _emailController.text,
-  //     password: _passwordController.text,
-  //     name: _nameController.text,
-  //   );
-  // }
+  void signUpUser() {
+    authService.signUpUser(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+      name: _nameController.text,
+    );
+  }
 
   // void signInUser() {
   //   authService.signInUser(
@@ -117,7 +119,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             color: GlobalVariables.secondaryColor,
                             onTap: () {
                               if (_signUpFormKey.currentState!.validate()) {
-                                // signUpUser();
+                                signUpUser();
                               }
                             },
                           )
