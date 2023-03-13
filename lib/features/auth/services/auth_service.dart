@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_amazon/common/widgets/bottom_bar.dart';
 import 'package:flutter_amazon/constants/error_handling.dart';
 import 'package:flutter_amazon/constants/global_variables.dart';
 import 'package:flutter_amazon/constants/utils.dart';
-import 'package:flutter_amazon/features/home/screens/home_screen.dart';
 import 'package:flutter_amazon/models/user.dart';
 import 'package:flutter_amazon/providers/user_provider.dart';
 import 'package:http/http.dart' as http;
@@ -83,7 +83,7 @@ class AuthService {
           // ignore: use_build_context_synchronously
           Navigator.pushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomBar.routeName,
             (route) => false,
           );
         },

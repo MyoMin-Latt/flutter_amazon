@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_amazon/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants/global_variables.dart';
-
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
   const HomeScreen({Key? key}) : super(key: key);
