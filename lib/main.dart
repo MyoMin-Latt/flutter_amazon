@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_amazon/features/auth/screens/auth_screen.dart';
+import 'package:flutter_amazon/features/auth/services/auth_service.dart';
+import 'package:flutter_amazon/features/home/screens/home_screen.dart';
 import 'package:flutter_amazon/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +24,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    authService.getUserData(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,12 +51,10 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true, // can remove this line
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      // home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-      //     ? Provider.of<UserProvider>(context).user.type == 'user'
-      //         ? const BottomBar()
-      //         : const AdminScreen()
-      //     : const AuthScreen(),
-      home: const AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? const HomeScreen()
+          : const AuthScreen(),
+      // home: const AuthScreen(),
     );
   }
 }

@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../models/user");
 const bcryptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+const auth = require("../middlewares/auth");
 const authRouter = express.Router();
 
 
@@ -41,10 +42,14 @@ authRouter.post('/api/signup', async (req, res) => {
 // Sign In Route
 // Exercise
 authRouter.post("/api/signin", async (req, res) => {
+    console.log(`api/signin > req > ${req}`);
     try {
         const { email, password } = req.body;
-
+        console.log(`api/signin > req in try > ${req}`);
+        console.log(`api/signin > email,password > ${email}, ${password}`);
+        console.log(`api/signin > req.body > ${req.body}`);
         const user = await User.findOne({ email });
+        console.log(`api/signin > user > ${user}`);
         if (!user) {
             return res
                 .status(400)
@@ -52,18 +57,46 @@ authRouter.post("/api/signin", async (req, res) => {
         }
 
         const isMatch = await bcryptjs.compare(password, user.password);
+        console.log(`api/signin > isMatch > ${isMatch}`);
         if (!isMatch) {
             return res.status(400).json({ msg: "Incorrect password." });
         }
 
         const token = jwt.sign({ id: user._id }, "passwordKey");
+        const usertoken = jwt.sign({ id: user }, "passwordKey");
+        console.log(`api/signin > token > ${token}`);
+        console.log(`api/signin > usertoken > ${usertoken}`);
         res.json({ token, ...user._doc });
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
 });
 
+authRouter.post("/tokenIsValid", async (req, res) => {
+    try {
+        const token = req.header("x-auth-token");
+        console.log(`token : ${token}`);
+        if (!token) return res.json(false);
+        const verified = jwt.verify(token, "passwordKey");
+        console.log(`verified : ${verified}`);
 
+        if (!verified) return res.json(false);
+
+        const user = await User.findById(verified.id);
+        if (!user) return res.json(false);
+
+        res.json(true);
+    } catch (error) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// get user data
+authRouter.get('/', auth, async (req, res) => {
+    console.log(`/, auth > ${req.user}`);
+    const user = await User.findById(req.user);
+    res.json({ ...user._doc, token: req.token })
+});
 
 
 
