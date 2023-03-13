@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../common/widgets/custom_button.dart';
 import '../../../common/widgets/custom_textfield.dart';
 import '../../../constants/global_variables.dart';
+import '../../../constants/utils.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
@@ -59,10 +60,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
   // }
 
   void selectImages() async {
-    // var res = await pickImages();
-    // setState(() {
-    //   images = res;
-    // });
+    var res = await pickImages();
+    setState(() {
+      images = res;
+    });
   }
 
   @override
