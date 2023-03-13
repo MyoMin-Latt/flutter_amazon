@@ -24,6 +24,7 @@ class AdminServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
+      debugPrint("sellProduct : images : $images");
       final cloudinary = CloudinaryPublic('duoivoaqm', 'zadpjavm');
       List<String> imageUrls = [];
 
@@ -31,6 +32,7 @@ class AdminServices {
         CloudinaryResponse res = await cloudinary.uploadFile(
           CloudinaryFile.fromFile(images[i].path, folder: name),
         );
+        debugPrint("sellProduct : res.secureUrl : ${res.secureUrl}");
         imageUrls.add(res.secureUrl);
       }
 
@@ -42,6 +44,8 @@ class AdminServices {
         category: category,
         price: price,
       );
+
+      debugPrint("sellProduct : product : ${product.toJson()}");
 
       http.Response res = await http.post(
         Uri.parse('$uri/admin/add-product'),

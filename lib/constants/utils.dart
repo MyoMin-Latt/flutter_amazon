@@ -15,8 +15,9 @@ Future<List<File>> pickImages() async {
   List<File> images = [];
   try {
     var files = await FilePicker.platform.pickFiles(
-      type: FileType.image,
       allowMultiple: true,
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'png'],
     );
     if (files != null && files.files.isNotEmpty) {
       for (int i = 0; i < files.files.length; i++) {

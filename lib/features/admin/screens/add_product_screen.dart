@@ -8,6 +8,7 @@ import '../../../common/widgets/custom_button.dart';
 import '../../../common/widgets/custom_textfield.dart';
 import '../../../constants/global_variables.dart';
 import '../../../constants/utils.dart';
+import '../services/admin_services.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
@@ -22,7 +23,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
-  // final AdminServices adminServices = AdminServices();
+  final AdminServices adminServices = AdminServices();
 
   String category = 'Mobiles';
   List<File> images = [];
@@ -45,19 +46,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'Fashion'
   ];
 
-  // void sellProduct() {
-  //   if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
-  //     adminServices.sellProduct(
-  //       context: context,
-  //       name: productNameController.text,
-  //       description: descriptionController.text,
-  //       price: double.parse(priceController.text),
-  //       quantity: double.parse(quantityController.text),
-  //       category: category,
-  //       images: images,
-  //     );
-  //   }
-  // }
+  void sellProduct() {
+    if (_addProductFormKey.currentState!.validate() && images.isNotEmpty) {
+      adminServices.sellProduct(
+        context: context,
+        name: productNameController.text,
+        description: descriptionController.text,
+        price: double.parse(priceController.text),
+        quantity: double.parse(quantityController.text),
+        category: category,
+        images: images,
+      );
+    }
+  }
 
   void selectImages() async {
     var res = await pickImages();
@@ -188,8 +189,8 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 CustomButton(
                   text: 'Sell',
                   color: GlobalVariables.secondaryColor,
-                  onTap: () {},
-                  // onTap: sellProduct,
+                  // onTap: () {},
+                  onTap: sellProduct,
                 ),
               ],
             ),

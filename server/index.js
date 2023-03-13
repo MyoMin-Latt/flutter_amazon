@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 // Imports from other files
 const authRouter = require("./routes/auth")
+const adminRouter = require('./routes/admin');
 
 // Init
 const app = express();
@@ -14,6 +15,7 @@ const DB = "mongodb+srv://myominlatt330:8nwu8vgDBiEdwr9R@cluster0.hwbhxtj.mongod
 // Client -> middleware ->  Server -> Client
 app.use(express.json());
 app.use(authRouter); // Q, how about user
+app.use(adminRouter);
 // app.use('/api/v1/auth', authRouter); // Q, how about user
 
 // connections
