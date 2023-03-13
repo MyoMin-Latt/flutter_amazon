@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/global_variables.dart';
+import 'posts_screen.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({Key? key}) : super(key: key);
@@ -15,18 +16,16 @@ class _AdminScreenState extends State<AdminScreen> {
   double bottomBarBorderWidth = 5;
 
   List<Widget> pages = [
-    const Center(
-      child: Text('PostsScreen'),
-    ),
+    const PostsScreen(),
+    // const AnalyticsScreen(),
+    // const OrdersScreen(),
+
     const Center(
       child: Text('AnalyticsScreen'),
     ),
     const Center(
       child: Text('OrdersScreen'),
     ),
-    // const PostsScreen(),
-    // const AnalyticsScreen(),
-    // const OrdersScreen(),
   ];
 
   void updatePage(int page) {
