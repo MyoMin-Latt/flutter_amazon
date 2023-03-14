@@ -7,7 +7,7 @@ const Product = require("../models/product");
 adminRouter.post('/admin/add-product', admin, async (req, res) => {
     try {
         const { name, description, quantity, images, category, price } = req.body;
-        console.log(`add-product > images > ${images}`);
+        // console.log(`add-product > images > ${images}`);
         let product = new Product({
             name,
             description,
@@ -16,7 +16,7 @@ adminRouter.post('/admin/add-product', admin, async (req, res) => {
             price,
             category,
         });
-        console.log(`add-product > ${product}`);
+        // console.log(`add-product > ${product}`);
         product = await product.save();
         res.json(product);
     } catch (error) {
@@ -30,6 +30,17 @@ adminRouter.get('/admin/get-products', admin, async (req, res) => {
     try {
         const products = await Product.find({});
         res.json(products);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Delete product
+adminRouter.post('/admin/delete-product', admin, async (req, res) => {
+    try {
+        const { id } = req.body;
+        let product = await Product.findByIdAndDelete(id);
+        res.json(product);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
