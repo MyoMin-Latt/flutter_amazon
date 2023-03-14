@@ -5,7 +5,7 @@ import 'features/admin/screens/add_product_screen.dart';
 import 'features/auth/screens/auth_screen.dart';
 import 'features/home/screens/category_deals_screen.dart';
 import 'features/home/screens/home_screen.dart';
-import 'features/product_details/product_details._screen.dart';
+import 'features/product_details/screens/product_details._screen.dart';
 import 'features/search/screens/search_screen.dart';
 import 'models/product.dart';
 

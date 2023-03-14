@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../common/widgets/loader.dart';
 import '../../../constants/global_variables.dart';
 import '../../../models/product.dart';
-import '../../product_details/product_details._screen.dart';
+import '../../product_details/screens/product_details._screen.dart';
 import '../services/search_services.dart';
 import '../widgets/search_product.dart';
 
