@@ -48,4 +48,30 @@ class Product {
 
   factory Product.fromJson(String source) =>
       Product.fromMap(json.decode(source));
+
+  Product copyWith(
+    Set<String> set, {
+    String? name,
+    String? description,
+    double? quantity,
+    List<String>? images,
+    String? category,
+    double? price,
+    String? id,
+  }) {
+    return Product(
+      name: name ?? this.name,
+      description: description ?? this.description,
+      quantity: quantity ?? this.quantity,
+      images: images ?? this.images,
+      category: category ?? this.category,
+      price: price ?? this.price,
+      id: id ?? this.id,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Product(name: $name, description: $description, quantity: $quantity, images: $images, category: $category, price: $price, id: $id)';
+  }
 }

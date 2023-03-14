@@ -49,4 +49,11 @@ class User {
 
   factory User.fromJson(String source) =>
       User.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  // ignore: todo
+  // TODO: Note1: if not override, print "Instance of Object"
+  @override
+  String toString() {
+    return 'User(id: $id, name: $name, password: $password, email: $email, address: $address, type: $type, token: $token)';
+  }
 }

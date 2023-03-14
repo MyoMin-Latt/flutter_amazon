@@ -11,7 +11,7 @@ adminRouter.post('/admin/add-product', admin, async (req, res) => {
         let product = new Product({
             name,
             description,
-            image: images, // Name is different!!!!!!!!!
+            images,
             quantity,
             price,
             category,
@@ -19,6 +19,17 @@ adminRouter.post('/admin/add-product', admin, async (req, res) => {
         console.log(`add-product > ${product}`);
         product = await product.save();
         res.json(product);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Get all your products for admin
+// admin/get-products
+adminRouter.get('/admin/get-products', admin, async (req, res) => {
+    try {
+        const products = await Product.find({});
+        res.json(products);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
