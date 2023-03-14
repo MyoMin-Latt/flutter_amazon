@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 // Imports from other files
 const authRouter = require("./routes/auth")
 const adminRouter = require('./routes/admin');
+const productRouter = require('./routes/product');
 
 // Init
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(authRouter); // Q, how about user
 app.use(adminRouter);
 // app.use('/api/v1/auth', authRouter); // Q, how about user
+app.use(productRouter);
 
 // connections
 mongoose.connect(DB).then(() => {
