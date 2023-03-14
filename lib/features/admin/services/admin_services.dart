@@ -62,7 +62,13 @@ class AdminServices {
         context: context,
         onSuccess: () {
           showSnackBar(context, 'Product Added Successfully!');
-          Navigator.pop(context);
+          Navigator.pop(context, 'data from add screen');
+          // Navigator.pushAndRemoveUntil(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => const BottomBar(),
+          //     ),
+          //     (route) => false);
         },
       );
     } catch (e) {

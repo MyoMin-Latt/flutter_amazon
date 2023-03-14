@@ -41,7 +41,8 @@ class _PostsScreenState extends State<PostsScreen> {
   }
 
   void navigateToAddProduct() {
-    Navigator.pushNamed(context, AddProductScreen.routeName);
+    Navigator.pushNamed(context, AddProductScreen.routeName)
+        .then((value) => value != null ? fetchAllProducts() : null);
   }
 
   @override
