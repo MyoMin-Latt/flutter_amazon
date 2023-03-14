@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/widgets/loader.dart';
 import '../../../constants/global_variables.dart';
 import '../../../models/product.dart';
+import '../../product_details/product_details._screen.dart';
+import '../services/search_services.dart';
+import '../widgets/search_product.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = '/search-screen';
@@ -17,19 +21,20 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   List<Product>? products;
-  // final SearchServices searchServices = SearchServices();
+  final SearchServices searchServices = SearchServices();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   fetchSearchedProduct();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    fetchSearchedProduct();
+  }
 
-  // fetchSearchedProduct() async {
-  //   products = await searchServices.fetchSearchedProduct(
-  //       context: context, searchQuery: widget.searchQuery);
-  //   setState(() {});
-  // }
+  fetchSearchedProduct() async {
+    products = await searchServices.fetchSearchedProduct(
+        context: context, searchQuery: widget.searchQuery);
+    debugPrint('fetchSearchedProduct > $products');
+    setState(() {});
+  }
 
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
@@ -110,33 +115,33 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
-      // body: products == null
-      //     ? const Loader()
-      //     : Column(
-      //         children: [
-      //           const AddressBox(),
-      //           const SizedBox(height: 10),
-      //           Expanded(
-      //             child: ListView.builder(
-      //               itemCount: products!.length,
-      //               itemBuilder: (context, index) {
-      //                 return GestureDetector(
-      //                   onTap: () {
-      //                     Navigator.pushNamed(
-      //                       context,
-      //                       ProductDetailScreen.routeName,
-      //                       arguments: products![index],
-      //                     );
-      //                   },
-      //                   child: SearchedProduct(
-      //                     product: products![index],
-      //                   ),
-      //                 );
-      //               },
-      //             ),
-      //           ),
-      //         ],
-      //       ),
+      body: products == null
+          ? const Loader()
+          : Column(
+              children: [
+                // const AddressBox(),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: products!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ProductDetailScreen.routeName,
+                            arguments: products![index],
+                          );
+                        },
+                        child: SearchedProduct(
+                          product: products![index],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_amazon/providers/user_provider.dart';
-import 'package:provider/provider.dart';
 
 import '../../../constants/global_variables.dart';
 import '../../search/screens/search_screen.dart';
@@ -24,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
+    // final user = Provider.of<UserProvider>(context).user;
 
     // return Scaffold(
     //   body: Center(child: Text(user.toJson())),

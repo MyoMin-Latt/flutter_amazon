@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../common/widgets/loader.dart';
 import '../../../constants/global_variables.dart';
 import '../../../models/product.dart';
+import '../../product_details/product_details._screen.dart';
 import '../services/home_services.dart';
 
 class CategoryDealsScreen extends StatefulWidget {
@@ -86,17 +87,13 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
                         ),
                         itemBuilder: (context, index) {
                           final product = productList![index];
-                          // return Padding(
-                          //   padding: const EdgeInsets.all(18.0),
-                          //   child: Text('Hello'),
-                          // );
                           return GestureDetector(
                             onTap: () {
-                              // Navigator.pushNamed(
-                              //   context,
-                              //   ProductDetailScreen.routeName,
-                              //   arguments: product,
-                              // );
+                              Navigator.pushNamed(
+                                context,
+                                ProductDetailScreen.routeName,
+                                arguments: product,
+                              );
                             },
                             child: Column(
                               children: [
