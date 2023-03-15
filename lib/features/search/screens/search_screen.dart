@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../common/widgets/loader.dart';
 import '../../../constants/global_variables.dart';
 import '../../../models/product.dart';
+import '../../home/widgets/address_box.dart';
 import '../../product_details/screens/product_details._screen.dart';
 import '../services/search_services.dart';
 import '../widgets/search_product.dart';
@@ -119,7 +120,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ? const Loader()
           : Column(
               children: [
-                // const AddressBox(),
+                const AddressBox(),
                 const SizedBox(height: 10),
                 Expanded(
                   child: ListView.builder(

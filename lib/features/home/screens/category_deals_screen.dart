@@ -33,6 +33,7 @@ class _CategoryDealsScreenState extends State<CategoryDealsScreen> {
       context: context,
       category: widget.category,
     );
+    debugPrint('CategoryDealsScreen > $productList');
     setState(() {});
   }
 

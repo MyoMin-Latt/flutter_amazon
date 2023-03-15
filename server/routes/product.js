@@ -29,6 +29,37 @@ productRouter.get("/api/products/search/:name", auth, async (req, res) => {
     }
 });
 
+// create a post request route to rate the product
+productRouter.post("/api/rate-product", auth, async (req, res) => {
+    try {
+        const { id, rating } = req.body;
+        let product = await Product.findById(id);
+        console.log(`rate-product > product > ${product}`);
+        console.log(`rate-product > product.name > ${product.name}`);
+
+        for (let i = 0; i < product.ratings.length; i++) {
+            if (product.ratings[i].userId == req.user) {
+                product.ratings.splice(i, 1);
+                break;
+            }
+
+        }
+        const ratingSchema = {
+            userId: req.user,
+            rating,
+        }
+        console.log(`rate-product > ratingSchema > ${ratingSchema}`);
+
+        product.ratings.push(ratingSchema);
+        product = await product.save();
+        console.log(`rate-product > product in save > ${product}`);
+        res.json(product);
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 
 // // create a post request route to rate the product.
 // productRouter.post("/api/rate-product", auth, async (req, res) => {

@@ -64,6 +64,8 @@ class ProductDetailsServices {
           'rating': rating,
         }),
       );
+      debugPrint('rateProduct > ${res.statusCode}');
+      debugPrint('rateProduct > ${res.body}');
 
       // ignore: use_build_context_synchronously
       httpErrorHandle(

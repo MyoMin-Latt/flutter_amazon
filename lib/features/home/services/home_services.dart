@@ -31,6 +31,8 @@ class HomeServices {
         response: res,
         context: context,
         onSuccess: () {
+          debugPrint('HomeServices > fetchCategoryProducts : ${res.body}');
+
           for (int i = 0; i < jsonDecode(res.body).length; i++) {
             productList.add(
               Product.fromJson(
