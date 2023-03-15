@@ -34,8 +34,8 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
     try {
         const { id, rating } = req.body;
         let product = await Product.findById(id);
-        console.log(`rate-product > product > ${product}`);
-        console.log(`rate-product > product.name > ${product.name}`);
+        // console.log(`rate-product > product > ${product}`);
+        // console.log(`rate-product > product.name > ${product.name}`);
 
         for (let i = 0; i < product.ratings.length; i++) {
             if (product.ratings[i].userId == req.user) {
@@ -48,17 +48,44 @@ productRouter.post("/api/rate-product", auth, async (req, res) => {
             userId: req.user,
             rating,
         }
-        console.log(`rate-product > ratingSchema > ${ratingSchema}`);
+        // console.log(`rate-product > ratingSchema > ${ratingSchema}`);
 
         product.ratings.push(ratingSchema);
         product = await product.save();
-        console.log(`rate-product > product in save > ${product}`);
+        // console.log(`rate-product > product in save > ${product}`);
         res.json(product);
 
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
+productRouter.get("/api/deal-of-day", auth, async (req, res) => {
+    try {
+        let products = await Product.find({});
+
+        console.log(`deal-of-day > first : ${products}`);
+        // console.log(`deal-of-day > first : ${products[1].rating[1].rating}`);
+        // console.log(`deal-of-day > first : ${products[2].rating[2].rating}`);
+        products = products.sort((a, b) => {
+            let aSum = 0;
+            let bSum = 0;
+
+            for (let i = 0; i < a.ratings.length; i++) {
+                aSum += a.ratings[i].rating;
+            }
+            for (let i = 0; i < b.ratings.length; i++) {
+                bSum += b.ratings[i].rating;
+            }
+            return bSum - aSum;
+            // return aSum < bSum ? 1 : -a;
+        });
+        console.log(`deal-of-day > sort : ${products}`);
+        res.json(products[0]);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
 
 
 // // create a post request route to rate the product.

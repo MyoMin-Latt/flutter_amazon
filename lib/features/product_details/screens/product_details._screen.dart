@@ -33,9 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   void initState() {
     super.initState();
     double totalRating = 0;
-    debugPrint('widget.product.rating init > ${widget.product}');
     if (widget.product.ratings != null) {
-      debugPrint('widget.product.rating > ${widget.product.ratings!.length}');
       for (int i = 0; i < widget.product.ratings!.length; i++) {
         totalRating += widget.product.ratings![i].rating;
         if (widget.product.ratings![i].userId ==
