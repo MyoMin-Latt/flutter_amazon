@@ -29,15 +29,17 @@ class ProductDetailsServices {
           'id': product.id!,
         }),
       );
+      debugPrint('add-to-cart : ${res.statusCode}');
+      // debugPrint('add-to-cart : ${res.body}');
 
       // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,
         context: context,
         onSuccess: () {
-          // User user =
-          //     userProvider.user.copyWith(cart: jsonDecode(res.body)['cart']);
-          // userProvider.setUserFromModel(user);
+          User user =
+              userProvider.user.copyWith(cart: jsonDecode(res.body)['cart']);
+          userProvider.setUserFromModel(user);
         },
       );
     } catch (e) {

@@ -70,8 +70,6 @@ class HomeServices {
         'x-auth-token': userProvider.user.token,
       });
 
-      debugPrint('HomeServices > fetchDealOfDay : ${res.body}');
-
       // ignore: use_build_context_synchronously
       httpErrorHandle(
         response: res,

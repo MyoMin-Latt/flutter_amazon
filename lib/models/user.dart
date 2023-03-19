@@ -9,6 +9,8 @@ class User {
   final String address;
   final String type;
   final String token;
+  final List<dynamic> cart;
+
   User({
     required this.id,
     required this.name,
@@ -17,10 +19,11 @@ class User {
     required this.address,
     required this.type,
     required this.token,
+    required this.cart,
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'id': id,
       'name': name,
       'password': password,
@@ -28,33 +31,32 @@ class User {
       'address': address,
       'type': type,
       'token': token,
+      'cart': cart,
     };
   }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      // id: map['id'] as String,
-      id: map['id'] ?? '',
-      name: map['name'] as String,
-      password: map['password'] as String,
-      email: map['email'] as String,
-      address: map['address'] as String,
-      type: map['type'] as String,
+      id: map['_id'] ?? '',
+      name: map['name'] ?? '',
+      password: map['password'] ?? '',
+      email: map['email'] ?? '',
+      address: map['address'] ?? '',
+      type: map['type'] ?? '',
       token: map['token'] ?? '',
-      // token: map['token'] as String,
+      cart: List<dynamic>.from(map['cart']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) => User.fromMap(json.decode(source));
 
   // ignore: todo
   // TODO: Note1: if not override, print "Instance of Object"
   @override
   String toString() {
-    return 'User(id: $id, name: $name, password: $password, email: $email, address: $address, type: $type, token: $token)';
+    return 'User(id: $id, name: $name, password: $password, email: $email, address: $address, type: $type, token: $token, cart: $cart)';
   }
 
   User copyWith({
@@ -65,6 +67,7 @@ class User {
     String? address,
     String? type,
     String? token,
+    List<dynamic>? cart,
   }) {
     return User(
       id: id ?? this.id,
@@ -74,6 +77,7 @@ class User {
       address: address ?? this.address,
       type: type ?? this.type,
       token: token ?? this.token,
+      cart: cart ?? this.cart,
     );
   }
 }
