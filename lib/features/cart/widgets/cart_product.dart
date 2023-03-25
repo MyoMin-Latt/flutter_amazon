@@ -23,7 +23,6 @@ class _CartProductState extends State<CartProduct> {
   final CartServices cartServices = CartServices();
 
   void increaseQuantity(Product product) {
-    debugPrint('increaseQuantity : $product');
     productDetailsServices.addToCart(
       context: context,
       product: product,

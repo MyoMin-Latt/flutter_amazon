@@ -17,6 +17,8 @@ class ProductDetailsServices {
     required Product product,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
+    debugPrint('AddToCart : start');
+    debugPrint('AddToCart : parameter : $product');
 
     try {
       http.Response res = await http.post(
@@ -29,8 +31,8 @@ class ProductDetailsServices {
           'id': product.id!,
         }),
       );
-      debugPrint('add-to-cart : ${res.statusCode}');
-      // debugPrint('add-to-cart : ${res.body}');
+
+      debugPrint('AddToCart : body : ${res.body}');
 
       // ignore: use_build_context_synchronously
       httpErrorHandle(
