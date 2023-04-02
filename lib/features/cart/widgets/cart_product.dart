@@ -103,7 +103,7 @@ class _CartProductState extends State<CartProduct> {
           ),
         ),
         Container(
-          margin: const EdgeInsets.all(10),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

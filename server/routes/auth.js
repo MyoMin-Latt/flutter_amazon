@@ -45,11 +45,11 @@ authRouter.post("/api/signin", async (req, res) => {
     console.log(`api/signin > req > ${req}`);
     try {
         const { email, password } = req.body;
-        console.log(`api/signin > req in try > ${req}`);
-        console.log(`api/signin > email,password > ${email}, ${password}`);
-        console.log(`api/signin > req.body > ${req.body}`);
+        // console.log(`api/signin > req in try > ${req}`);
+        // console.log(`api/signin > email,password > ${email}, ${password}`);
+        // console.log(`api/signin > req.body > ${req.body}`);
         const user = await User.findOne({ email });
-        console.log(`api/signin > user > ${user}`);
+        // console.log(`api/signin > user > ${user}`);
         if (!user) {
             return res
                 .status(400)
@@ -57,15 +57,15 @@ authRouter.post("/api/signin", async (req, res) => {
         }
 
         const isMatch = await bcryptjs.compare(password, user.password);
-        console.log(`api/signin > isMatch > ${isMatch}`);
+        // console.log(`api/signin > isMatch > ${isMatch}`);
         if (!isMatch) {
             return res.status(400).json({ msg: "Incorrect password." });
         }
 
         const token = jwt.sign({ id: user._id }, "passwordKey");
         const usertoken = jwt.sign({ id: user }, "passwordKey");
-        console.log(`api/signin > token > ${token}`);
-        console.log(`api/signin > usertoken > ${usertoken}`);
+        // console.log(`api/signin > token > ${token}`);
+        // console.log(`api/signin > usertoken > ${usertoken}`);
         res.json({ token, ...user._doc });
     } catch (e) {
         res.status(500).json({ error: e.message });

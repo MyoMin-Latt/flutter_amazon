@@ -5,7 +5,7 @@
     "password": "$2a$08$ZpMPB8OAUzDD8b/KANBJW.OFrZQYrG/j3dSg4yictUTbMZgstrYCu",
     "address": "",
     "type": "user",
-    "__v": 15,
+    "__v": 67,
     "cart": [
         {
             "product": {
@@ -27,8 +27,31 @@
                 "_id": "640ff1de49e0d76c117e17cc",
                 "__v": 8
             },
-            "quantity": 1,
-            "_id": "641ecc3c28e63ca2d2b46207"
+            "quantity": 3,
+            "_id": "641f1137222356dc41042d96"
+        },
+        {
+            "product": {
+                "name": "a",
+                "description": "a",
+                "images": [
+                    "https://res.cloudinary.com/duoivoaqm/image/upload/v1678769609/a/phvdknf0nytwtomscj8h.jpg"
+                ],
+                "quantity": 3,
+                "price": 3,
+                "category": "Mobiles",
+                "ratings": [
+                    {
+                        "userId": "640c5c3c54bce8cc957b362d",
+                        "rating": 2,
+                        "_id": "641169417ff6464b85bdc90d"
+                    }
+                ],
+                "_id": "640ffdc9b8708a5be92cd651",
+                "__v": 2
+            },
+            "quantity": 2,
+            "_id": "641f122d222356dc41042efa"
         }
     ]
 }
