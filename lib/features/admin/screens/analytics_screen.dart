@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../common/widgets/loader.dart';
 import '../models/sales.dart';
 import '../services/admin_services.dart';
+import '../widgets/category_products_chart.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({Key? key}) : super(key: key);
@@ -36,23 +37,17 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
         : Column(
             children: [
               Text(
-                '\$$totalSales',
+                'Totol Amount: \$$totalSales',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              // SizedBox(
-              //   height: 250,
-              //   child: CategoryProductsChart(seriesList: [
-              //     charts.Series(
-              //       id: 'Sales',
-              //       data: earnings!,
-              //       domainFn: (Sales sales, _) => sales.label,
-              //       measureFn: (Sales sales, _) => sales.earning,
-              //     ),
-              //   ]),
-              // )
+              const SizedBox(height: 30),
+              SizedBox(
+                height: 250,
+                child: CategoryProductsChart(salesList: earnings ?? []),
+              )
             ],
           );
   }
