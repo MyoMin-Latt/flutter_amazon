@@ -22,38 +22,40 @@ class CategoryProductsChart extends StatelessWidget {
     );
     myBarData.initilizeBarData();
 
-    return BarChart(BarChartData(
-      // maxY: 200,
-      // minY: 0,
-      gridData: FlGridData(show: false),
-      borderData: FlBorderData(show: false),
-      titlesData: FlTitlesData(
-          show: true,
-          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          // leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          bottomTitles: getBottomTitles()),
-      barGroups: myBarData.barData
-          .map(
-            (data) => BarChartGroupData(
-              x: data.x,
-              barRods: [
-                BarChartRodData(
-                  toY: data.y,
-                  color: Colors.grey[800],
-                  width: 50,
-                  borderRadius: BorderRadius.circular(4),
-                  backDrawRodData: BackgroundBarChartRodData(
-                    show: true,
-                    toY: 70,
-                    color: Colors.grey[200],
+    return BarChart(
+      BarChartData(
+        // maxY: 200,
+        // minY: 0,
+        gridData: FlGridData(show: false),
+        borderData: FlBorderData(show: false),
+        titlesData: FlTitlesData(
+            show: true,
+            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            // leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            bottomTitles: getBottomTitles()),
+        barGroups: myBarData.barData
+            .map(
+              (data) => BarChartGroupData(
+                x: data.x,
+                barRods: [
+                  BarChartRodData(
+                    toY: data.y,
+                    color: Colors.grey[800],
+                    width: 50,
+                    borderRadius: BorderRadius.circular(4),
+                    backDrawRodData: BackgroundBarChartRodData(
+                      show: true,
+                      toY: 70,
+                      color: Colors.grey[200],
+                    ),
                   ),
-                )
-              ],
-            ),
-          )
-          .toList(),
-    ));
+                ],
+              ),
+            )
+            .toList(),
+      ),
+    );
   }
 
   AxisTitles getBottomTitles() {

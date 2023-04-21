@@ -10,7 +10,7 @@ const userRouter = require('./routes/user');
 
 // Init
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const DB = "mongodb+srv://myominlatt330:8nwu8vgDBiEdwr9R@cluster0.hwbhxtj.mongodb.net/?retryWrites=true&w=majority" // if password contain '@', can face this error MongoAPIError: URI must include hostname, domain name, and tld
 
 // middleware
