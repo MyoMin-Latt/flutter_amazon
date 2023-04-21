@@ -3,6 +3,7 @@
     "nodemon": "^2.0.21"
   },
   "dependencies": {
-    "build": "^0.1.4"
+    "build": "^0.1.4",
+    "express": "^4.18.2"
   }
 }
