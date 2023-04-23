@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_amazon/features/admin/screens/admin_screen.dart';
+import 'package:flutter_amazon/features/auth/screens/splash_screen.dart';
 
 import 'common/widgets/bottom_bar.dart';
 import 'features/address/screens/address_screen.dart';
@@ -14,6 +16,16 @@ import 'models/product.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
+    case SplashScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const SplashScreen(),
+      );
+    case AdminScreen.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => const AdminScreen(),
+      );
     case AuthScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,

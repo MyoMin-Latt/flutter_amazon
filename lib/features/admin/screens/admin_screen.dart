@@ -6,6 +6,7 @@ import 'orders_screen.dart';
 import 'posts_screen.dart';
 
 class AdminScreen extends StatefulWidget {
+  static const String routeName = '/admin-screen';
   const AdminScreen({Key? key}) : super(key: key);
 
   @override
