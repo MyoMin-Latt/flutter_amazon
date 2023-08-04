@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 // Imports from other files
-const authRouter = require("./routes/auth")
+const authRouter = require("./routes/auth");
 const adminRouter = require('./routes/admin');
 const productRouter = require('./routes/product');
 const userRouter = require('./routes/user');
@@ -12,6 +12,7 @@ const userRouter = require('./routes/user');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DB = "mongodb+srv://myominlatt330:8nwu8vgDBiEdwr9R@cluster0.hwbhxtj.mongodb.net/?retryWrites=true&w=majority" // if password contain '@', can face this error MongoAPIError: URI must include hostname, domain name, and tld
+// const DB = "mongodb+srv://myominlatt330:8nwu8vgDBiEdwr9R@cluster0.hwbhxtj.mongodb.net/?retryWrites=true&w=majority" // if password contain '@', can face this error MongoAPIError: URI must include hostname, domain name, and tld
 
 // middleware
 // Client -> middleware ->  Server -> Client
